@@ -13,11 +13,21 @@ public class GreetingServiceTest {
         greetingservice = new GreetingService();
     }
 
+    // 이름이 없는 경우 다른 인사 메세지 다르게 처리
     @Test
-    public void getMessage() {
+    public void getMessage() throws Exception{
 
         assertThat(
-                greetingservice.getMessage()
+                greetingservice.getMessage(null)
         ).isEqualTo("Hello");
+    }
+
+    // 이름이 있는 경우 다른 인사 메세지 다르게 처리
+    @Test
+    public void getMessageWithName() throws Exception{
+
+        assertThat(
+                greetingservice.getMessage("JOKER")
+        ).isEqualTo("Hello, JOKER");
     }
 }

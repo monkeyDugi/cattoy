@@ -30,11 +30,12 @@ public class GreetingControllerTest {
     public void hello() throws Exception {
 
         //GET /hello --> 200(OK), 404(NOT FOUND)
-        mockMvc.perform(get("/hello"))
+        //.param("name", "JOKER")) -> 파라미터로 JOKER를 넘겨준다.
+        mockMvc.perform(get("/hello").param("name", "JOKER"))
                 .andExpect(status().isOk()) // 200(OK)이 나와야 통과
                 // 온전한 hello가 있는지
-                //.andExpect(content().string("hello"));
-                // hello가 포함되어 있는지 -> containsString(요안에 substring이 적용되기 때문에)
-                .andExpect(content().string(containsString("Hello")));
+                //.andExpect(content().string("Hello"));
+                // hello, JOKER가 포함되어 있는지 -> containsString(요안에 substring이 적용되기 때문에)
+                .andExpect(content().string(containsString("Hello, JOKER")));
     }
 }

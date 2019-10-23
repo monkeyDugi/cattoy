@@ -15,8 +15,9 @@ public class GreetingController {
 
     @GetMapping("/hello")
     public Greeting hello(
-            // param이 null 이면 "world" 있으면 name
-            @RequestParam(defaultValue = "world") String name
+            // @RequestParam(defaultValue = "world") : param이 null 이면 "world" 있으면 name
+            // @RequestParam(required = false) : null 아니야! 라고 강제
+            @RequestParam(required = false) String name
     ) {
         Greeting greeting = new Greeting();
         greeting.setName("dugi");

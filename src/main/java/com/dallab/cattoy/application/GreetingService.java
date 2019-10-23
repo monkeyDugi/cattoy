@@ -1,5 +1,6 @@
 package com.dallab.cattoy.application;
 
+import com.dallab.cattoy.domain.Greeting;
 import lombok.Setter;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +10,10 @@ import org.springframework.stereotype.Service;
 public class GreetingService {
 
     public String getMessage(String name) {
-        if(name == null) {
-            return "Hello";
-        }
-        return "Hello, " + name;
+        Greeting greeting = Greeting.builder()
+                .name(name)
+                .build();
+
+        return greeting.getMessage();
     }
 }

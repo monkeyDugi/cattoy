@@ -42,7 +42,7 @@ public class GreetingControllerTest {
     * - Service가 Controller에 의존해 있는 테스트를 하기 때문에 사용한다??
     * - 진짜객체
     * */
-    //@SpyBean
+    @SpyBean
     /*
     * @MockBean이란
     * - 가짜각체
@@ -59,15 +59,15 @@ public class GreetingControllerTest {
     *      테스트가 가능하게 된다. 즉, DB에 연결되어 있는 경우도 굳이 DB에서 데이터를 받아와 테스트 할 필요가 없을 때
     *      사용해되 될 것 같다.
     * */
-    @MockBean
+    //@MockBean
     private GreetingService greetingService;
 
-    @Before
-    public void mockGreetingService() {
-
-        given(greetingService.getMessage(null)).willReturn("Hello");
-        given(greetingService.getMessage("JOKER")).willReturn("Hello, JOKER");
-    }
+//    @Before
+//    public void mockGreetingService() {
+//
+//        given(greetingService.getMessage(null)).willReturn("Hello");
+//        given(greetingService.getMessage("JOKER")).willReturn("Hello, JOKER");
+//    }
 
     @Test
     public void hello() throws Exception {
@@ -81,7 +81,7 @@ public class GreetingControllerTest {
                 // hello, JOKER가 포함되어 있는지 -> containsString(요안에 substring이 적용되기 때문에)
                 .andExpect(content().string(containsString("Hello")));
         // MockBean(가짜객체)의 getMessage() 메서드가 잘 실행된건지 확인
-        verify(greetingService).getMessage(null);
+        //verify(greetingService).getMessage(null);
     }
 
     @Test
@@ -92,6 +92,6 @@ public class GreetingControllerTest {
         mockMvc.perform(get("/hello").param("name", "JOKER"))
                 .andExpect(status().isOk()) // 200(OK)이 나와야 통과
                 .andExpect(content().string(containsString("Hello, JOKER")));
-        verify(greetingService).getMessage("JOKER");
+        //verify(greetingService).getMessage("JOKER");
     }
 }

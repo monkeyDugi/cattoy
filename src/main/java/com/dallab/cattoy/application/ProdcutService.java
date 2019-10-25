@@ -26,6 +26,8 @@ public class ProdcutService {
 
     public void addProduct(String name) {
 
-        products.add(Product.builder().name(name).build());
+        Product product = Product.builder().name(name).build();
+
+        productRepository.save(product);
     }
 }

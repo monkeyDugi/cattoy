@@ -1,15 +1,14 @@
 package com.dallab.cattoy.domain;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
-public class ProductRepository {
+@Repository
+// interface, class 아무거나 상관없다.
+public interface ProductRepository {
 
-    public List<Product> findAll() {
+    public List<Product> findAll();
 
-        return null;
-    }
-
-    public void save(Product product) {
-
-    }
+    public void save(Product product);
 }

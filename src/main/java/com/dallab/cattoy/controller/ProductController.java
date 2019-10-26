@@ -2,7 +2,7 @@ package com.dallab.cattoy.controller;
 
 import com.dallab.cattoy.application.ProdcutService;
 import com.dallab.cattoy.domain.Product;
-import com.dallab.cattoy.dtd.ProductDto;
+import com.dallab.cattoy.dto.ProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

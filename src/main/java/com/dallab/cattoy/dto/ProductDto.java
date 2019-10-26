@@ -1,4 +1,4 @@
-package com.dallab.cattoy.dtd;
+package com.dallab.cattoy.dto;
 
 import lombok.Data;
 

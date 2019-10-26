@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:file:C:/data/cat-toys
+    url: jdbc:h2:C:/data/cat-toys
   jpa:
     hibernate:
       ddl-auto: update

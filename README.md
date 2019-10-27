@@ -1,7 +1,7 @@
-# 고양이마켓 프로젝트 REST API, 도메인 주도 설계, TDD
+# REST API, 도메인 주도 설계, TDD연습을 위한 이용한 cattoy 프로젝트
 # TDD
 1. 의존성
-   : domain -> Application(Service) -> UI(Controlloer)으로 의존
+   : domain <- Application(Service) <- UI(Controlloer)으로 의존
    : domain이 바뀌면 App이 바뀌고, App이 바뀌면 UI가 바뀜.
    : domain -> 말 그대로 domain, 가장 깊은 내용을 다루고 있음
    : Application -> 비즈니스 로직을 다루고 있음.

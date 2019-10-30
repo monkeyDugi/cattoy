@@ -9,4 +9,6 @@ public class ProductDto {
 //  Entity와 mapping
     @Mapping("name")
     private String name;
+    private  String maker;
+    private  Integer price;
 }

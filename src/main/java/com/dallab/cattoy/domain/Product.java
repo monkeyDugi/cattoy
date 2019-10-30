@@ -5,24 +5,32 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.text.NumberFormat;
 
-@Entity // JPA를 사용하려면 해줘야 한다. 알아보자
+// JPA가 관리하는 클래스로 설정
+// 기본생성자 필수
+// final 필드 불가
+@Entity
+// 테이블을 해당 name으로 생성해준다 설저 안할 시 클래스명으로 테이블 생성
+@Table(name="dugi")
+//
 @Builder
+// 기본생성자 생성
 @NoArgsConstructor
+// 모든 필드 기본생성자 생성
 @AllArgsConstructor
 public class Product {
 
-    // JAP 사용하려면 해주어야 한다는데 알아보자.
+    // 기본키 반드시 하나의 Entity에는 한개이상 존재해야 한다.
     @Id
+    // pk 타입설정 : 더 알아보자
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Getter
+    // 해당 name을 컬럼으로 만들고 안할 시 필드명으로 생성
+    @Column(name="NAME", length =  10, nullable = false)
     private String name;
 
     @Getter

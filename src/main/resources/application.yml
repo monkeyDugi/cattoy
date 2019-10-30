@@ -1,13 +1,23 @@
+##평소에는 cat-toy에 DB를 저장하고, profiles이 test로 설정된 놈은 memory에 저장한다(서버 끄면 날아감 )
+##@activiteprofilesd()을 사용하는데 junit 테스트 시 유용.
+
+#파일로 db를 관리한다.
 spring:
   datasource:
-    url: jdbc:h2:C:/data/cat-toys
+    url: jdbc:h2:C:/data/cat-toy
+#h2 console 페이지 사용
+  h2:
+    console:
+      enabled: true
   jpa:
     hibernate:
       ddl-auto: update
 
----
+--- 
 
 spring:
+#test profiles일 경우 memory에 저장, 현재는 내 소스에서는 별 활용에 의미가 없다. test는 db연동도 안했고, jpa test도 안함. 할 필요가 없기 때문에. 이미 스프링이 잘 만들어 놓은 기능을 사용하는거라서
   profiles: test
+#jdbc로 h2 DB의 memory에 test table을 생성
   datasource:
     url: jdbc:h2:mem:test

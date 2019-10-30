@@ -19,6 +19,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -50,5 +51,13 @@ public class ProductControllerTest {
                 .andExpect(content().string(containsString("쥐이")));
 
         verify(productService).getProducts();
+    }
+
+    @Test
+    public void save() throws Exception {
+
+        mockMvc.perform(post("/product"))
+                .andExpect(status().isOk());
+        verify(productService).addProduct("쥐돌이");
     }
 }

@@ -36,7 +36,6 @@ public class ProdcutServiceTest {
 
     @Test
     public void getProductsWithEmpty() throws Exception {
-
         List<Product> products = new ArrayList<>();
 
         given(productRepository.findAll()).willReturn(products);
@@ -46,7 +45,6 @@ public class ProdcutServiceTest {
 
     @Test
     public  void getProductsWithOneProduct() {
-
         List<Product> products = new ArrayList<>();
 
         products.add(Product.builder().name("쥐돌이").build());
@@ -58,11 +56,14 @@ public class ProdcutServiceTest {
 
     @Test
     public void addProdcut() throws Exception {
+        Product product = Product.builder()
+                .name("쥐돌이")
+                .maker("달랩")
+                .price(5000)
+                .build();
 
-        prodcutService.addProduct("쥐돌이", "duk", 4000);
+        prodcutService.addProduct(product);
 
-        // @Mock : prodcutService = new ProdcutService(productRepository); 요걸 해줘서 Service에 save호출을 안하면
-        //         ServiceTest에서도 호출을 못했따고 하는건가???
         verify(productRepository).save(any());
     }
 }

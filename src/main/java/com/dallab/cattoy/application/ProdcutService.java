@@ -17,23 +17,14 @@ public class ProdcutService {
     private  List<Product> products = new ArrayList<>();
 
     public ProdcutService(ProductRepository productRepository) {
-
         this.productRepository = productRepository;
     }
 
     public List<Product> getProducts() {
-
         return productRepository.findAll();
     }
 
-    public void addProduct(String name, String maker, Integer price) {
-
-        Product product = Product.builder()
-                .name(name)
-                .maker(maker)
-                .price(price)
-                .build();
-
+    public void addProduct(Product product) {
         productRepository.save(product);
     }
 }

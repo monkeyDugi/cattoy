@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -63,6 +64,6 @@ public class ProductControllerTest {
         )
                 .andExpect(status().isCreated());
 
-        verify(productService).addProduct("낚시대", "달랩", 5000);
+        verify(productService).addProduct(any(Product.class));
     }
 }

@@ -39,11 +39,9 @@ public class ProductController {
     // @RequestBody JSON 받기
     @PostMapping("/products")
     public ResponseEntity<?> create(@RequestBody ProductDto productDto) throws URISyntaxException {
-        String name = productDto.getName();
-        String maker = productDto.getMaker();
-        Integer price = productDto.getPrice();
+        Product product = mapper.map(productDto, Product.class);
 
-        productService.addProduct(name, maker, price);
+        productService.addProduct(product);
 
         // POST 시 반드시 헤더에 URL 정보가 들어가야 한다??
         URI location = new URI("/products/1004");

@@ -24,9 +24,11 @@ import java.text.NumberFormat;
 public class Product {
 
     // 기본키 반드시 하나의 Entity에는 한개이상 존재해야 한다.
+    // 기본키는 Long 타입으로 한다.
     @Id
     // pk 타입설정 : 더 알아보자
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private Long id;
 
     @Getter

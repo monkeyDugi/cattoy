@@ -24,7 +24,7 @@ public class ProdcutService {
         return productRepository.findAll();
     }
 
-    public void addProduct(Product product) {
-        productRepository.save(product);
+    public Product addProduct(Product product) {
+        return productRepository.save(product);
     }
 }

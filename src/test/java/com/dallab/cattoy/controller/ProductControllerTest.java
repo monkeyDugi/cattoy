@@ -22,8 +22,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(ProductController.class)
@@ -57,12 +56,18 @@ public class ProductControllerTest {
 
     @Test
     public void create() throws Exception {
+        Product product = Product.builder()
+                .id(13L)
+                .build();
+
+        given(productService.addProduct(any())).willReturn(product);
+
         mockMvc.perform(post("/products")
-//               POST에서 JSON방식으로 던지기 아직 실제 컨트롤러에서는 받는게 없기 때문에 실제 컨트롤러는 하드코딩 되어있음.
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"name\":\"낚시대\", \"maker\":\"달랩\", \"price\":5000}")
         )
-                .andExpect(status().isCreated());
+                .andExpect(status().isCreated())
+                .andExpect(header().string("location", "/products/13"));
 
         verify(productService).addProduct(any(Product.class));
     }

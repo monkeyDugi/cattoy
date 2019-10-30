@@ -26,9 +26,13 @@ public class ProdcutService {
         return productRepository.findAll();
     }
 
-    public void addProduct(String name) {
+    public void addProduct(String name, String maker, Integer price) {
 
-        Product product = Product.builder().name(name).build();
+        Product product = Product.builder()
+                .name(name)
+                .maker(maker)
+                .price(price)
+                .build();
 
         productRepository.save(product);
     }

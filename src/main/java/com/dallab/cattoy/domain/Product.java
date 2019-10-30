@@ -16,6 +16,7 @@ import java.text.NumberFormat;
 @Table(name="dugi")
 //
 @Builder
+// Jpa 사용을 위해서는 기본생성자가 필요하다고 함.
 // 기본생성자 생성
 @NoArgsConstructor
 // 모든 필드 기본생성자 생성

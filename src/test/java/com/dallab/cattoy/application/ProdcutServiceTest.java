@@ -59,7 +59,7 @@ public class ProdcutServiceTest {
     @Test
     public void addProdcut() throws Exception {
 
-        prodcutService.addProduct("쥐돌이");
+        prodcutService.addProduct("쥐돌이", "duk", 4000);
 
         // @Mock : prodcutService = new ProdcutService(productRepository); 요걸 해줘서 Service에 save호출을 안하면
         //         ServiceTest에서도 호출을 못했따고 하는건가???

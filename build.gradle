@@ -29,7 +29,5 @@ dependencies {
 
 	implementation 'com.github.dozermapper:dozer-core:6.5.0' // dozer
 
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

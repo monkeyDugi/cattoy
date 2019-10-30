@@ -54,10 +54,10 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void save() throws Exception {
+    public void create() throws Exception {
+        mockMvc.perform(post("/products"))
+                .andExpect(status().isCreated());
 
-        mockMvc.perform(post("/product"))
-                .andExpect(status().isOk());
-        verify(productService).addProduct("쥐돌이");
+        verify(productService).addProduct("쥐돌이", "dugi", 4000);
     }
 }

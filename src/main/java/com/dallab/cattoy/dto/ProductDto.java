@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 public class ProductDto {
 
+
 //  Entity와 mapping : 꼭 없어도 되는건가? 명시적인건가?
     @Mapping("name")
     private String name;

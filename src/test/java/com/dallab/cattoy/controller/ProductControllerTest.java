@@ -20,8 +20,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
@@ -63,6 +62,7 @@ public class ProductControllerTest {
         given(productService.addProduct(any())).willReturn(product);
 
         mockMvc.perform(post("/products")
+                // JSON을 받는 다는걸 말해줌. 안그러면 스프링이 못알드들음.
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"name\":\"낚시대\", \"maker\":\"달랩\", \"price\":5000}")
         )
@@ -70,5 +70,13 @@ public class ProductControllerTest {
                 .andExpect(header().string("location", "/products/13"));
 
         verify(productService).addProduct(any(Product.class));
+    }
+
+    @Test
+    public void destroy() throws Exception {
+        mockMvc.perform(delete("/products/13"))
+                .andExpect(status().isOk());
+
+        verify(productService).removeProduct(13L);
     }
 }

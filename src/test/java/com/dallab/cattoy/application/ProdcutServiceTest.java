@@ -66,4 +66,11 @@ public class ProdcutServiceTest {
 
         verify(productRepository).save(any());
     }
+
+    @Test
+    public void removeProduct() {
+        prodcutService.removeProduct(13L);
+
+        verify(productRepository).deleteById(13L);
+    }
 }

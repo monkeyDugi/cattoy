@@ -27,4 +27,8 @@ public class ProdcutService {
     public Product addProduct(Product product) {
         return productRepository.save(product);
     }
+
+    public void removeProduct(Long id) {
+        productRepository.deleteById(id);
+    }
 }

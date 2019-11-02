@@ -27,10 +27,17 @@ public class ProductController {
     public List<ProductDto> list() {
         List<Product> products = productService.getProducts();
 
-//      리스트를 Dto에 mapping하여 뿌려준다. forEach같은거 쓸 필요없이
+//      리스트를 Dto에 mapping하여 뿌려준다. 객체간의 매핑
         return products.stream()
                 .map(product -> mapper.map(product, ProductDto.class))
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping("/products/{id}")
+    public ProductDto detail(@PathVariable("id") Long id) {
+        Product product = productService.getProducts(id);
+
+        return mapper.map(product, ProductDto.class);
     }
 
     // @RequestBody JSON 받기

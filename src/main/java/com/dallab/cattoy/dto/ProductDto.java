@@ -7,7 +7,9 @@ import lombok.Data;
 public class ProductDto {
 
 
-//  Entity와 mapping : 꼭 없어도 되는건가? 명시적인건가?
+//  @Mapping dozer의 Mapping으로 객체(Product)간의 매핑을 위함
+    @Mapping("id")
+    private Long id;
     @Mapping("name")
     private String name;
     @Mapping("maker")

@@ -24,6 +24,10 @@ public class ProdcutService {
         return productRepository.findAll();
     }
 
+    public Product getProducts(Long id) {
+        return productRepository.findById(id).get();
+    }
+
     public Product addProduct(Product product) {
         return productRepository.save(product);
     }

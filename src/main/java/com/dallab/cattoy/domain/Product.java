@@ -1,5 +1,6 @@
 package com.dallab.cattoy.domain;
 
+import com.dallab.cattoy.dto.ProductDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -51,5 +52,11 @@ public class Product {
 
     public void changeImageUrl(String imagUrl) {
         this.imagUrl = imagUrl;
+    }
+
+    public void changeWithDto(ProductDto productDto) {
+        name = productDto.getName();
+        maker = productDto.getMaker();
+        price = productDto.getPrice();
     }
 }

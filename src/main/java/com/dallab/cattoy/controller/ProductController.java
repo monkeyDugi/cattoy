@@ -26,7 +26,7 @@ public class ProductController {
 
     @GetMapping("/products")
     public List<ProductDto> list() {
-        List<Product> products = productService.getProducts();
+        List<Product> products = productService.getProduct();
 
 //      리스트를 Dto에 mapping하여 뿌려준다. 객체간의 매핑
         return products.stream()
@@ -36,7 +36,7 @@ public class ProductController {
 
     @GetMapping("/products/{id}")
     public ProductDto detail(@PathVariable("id") Long id) {
-        Product product = productService.getProducts(id);
+        Product product = productService.getProduct(id);
 
         return mapper.map(product, ProductDto.class);
     }

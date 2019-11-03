@@ -42,7 +42,7 @@ public class ProdcutServiceTest {
 
         given(productRepository.findAll()).willReturn(products);
 
-        assertThat(prodcutService.getProducts()).isEmpty();
+        assertThat(prodcutService.getProduct()).isEmpty();
     }
 
     @Test
@@ -53,7 +53,7 @@ public class ProdcutServiceTest {
 
         given(productRepository.findAll()).willReturn(products);
 
-        assertThat(prodcutService.getProducts()).isNotEmpty();
+        assertThat(prodcutService.getProduct()).isNotEmpty();
     }
 
     @Test
@@ -67,7 +67,7 @@ public class ProdcutServiceTest {
         given(productRepository.findById(13L))
                 .willReturn(Optional.of(product));
 
-        assertThat(prodcutService.getProducts(13L)).isEqualTo(product);
+        assertThat(prodcutService.getProduct(13L)).isEqualTo(product);
 
         verify(productRepository).findById(13L);
     }

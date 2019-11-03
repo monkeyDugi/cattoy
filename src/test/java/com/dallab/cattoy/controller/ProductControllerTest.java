@@ -14,6 +14,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class ProductControllerTest {
         List<Product> products = new ArrayList<>();
         products.add(Product.builder().name("쥐이").build());
 
-        given(productService.getProducts()).willReturn(products);
+        given(productService.getProduct()).willReturn(products);
     }
 
     @Test
@@ -51,7 +52,7 @@ public class ProductControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("쥐이")));
 
-        verify(productService).getProducts();
+        verify(productService).getProduct();
     }
 
     @Test
@@ -131,19 +132,30 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void detail() throws Exception {
+    public void detailWhenProductExists() throws Exception {
         Product product = Product.builder()
                 .name("쥐돌이")
                 .maker("달랩")
                 .price(5000)
                 .build();
 
-        given(productService.getProducts(13L)).willReturn(product);
+        given(productService.getProduct(13L)).willReturn(product);
 
         mockMvc.perform(get("/products/13"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("쥐돌이")));
 
-        verify(productService).getProducts(13L);
+        verify(productService).getProduct(13L);
+    }
+
+    @Test
+    public void detailWhenProudctNotExists() throws Exception {
+        given(productService.getProduct(13L))
+                .willThrow(new EntityNotFoundException());
+
+        mockMvc.perform(get("/products/13"))
+                .andExpect(status().isNotFound());
+
+        verify(productService).getProduct(13L);
     }
 }

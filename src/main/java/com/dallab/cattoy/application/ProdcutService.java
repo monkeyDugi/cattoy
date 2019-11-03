@@ -21,11 +21,11 @@ public class ProdcutService {
         this.productRepository = productRepository;
     }
 
-    public List<Product> getProducts() {
+    public List<Product> getProduct() {
         return productRepository.findAll();
     }
 
-    public Product getProducts(Long id) {
+    public Product getProduct(Long id) {
         return productRepository.findById(id).get();
     }
 

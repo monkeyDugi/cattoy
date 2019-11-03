@@ -55,7 +55,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void create() throws Exception {
+    public void createWithValidAttributes() throws Exception {
         Product product = Product.builder()
                 .id(13L)
                 .build();
@@ -74,7 +74,17 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void update() throws Exception {
+    public void createWithInvalidAttributes() throws Exception {
+        mockMvc.perform(
+                post("/products")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content("{\"name\":\"\", \"maker\":\"\", \"price\":1000}")
+        )
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void updateWithValidAttributes() throws Exception {
         mockMvc.perform(
                 patch("/products/13")
                     .contentType(MediaType.APPLICATION_JSON)
@@ -90,6 +100,26 @@ public class ProductControllerTest {
                 .build();
 
         verify(productService).updateProduct(13L, productDto);
+    }
+
+    @Test
+    public void updateWithInvalidAttributes() throws Exception {
+        mockMvc.perform(
+                patch("/products/13")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content("{\"name\":\"\", \"maker\":\"\", \"price\":1000}")
+        )
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void updateWithInvalidPrice() throws Exception {
+        mockMvc.perform(
+                patch("/products/13")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content("{\"name\":\"낚시대\", \"maker\":\"\", \"price\":-1000}")
+        )
+                .andExpect(status().isBadRequest());
     }
 
     @Test

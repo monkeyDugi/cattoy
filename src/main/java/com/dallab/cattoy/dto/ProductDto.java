@@ -1,9 +1,11 @@
 package com.dallab.cattoy.dto;
 
 import com.github.dozermapper.core.Mapping;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class ProductDto {
 
 

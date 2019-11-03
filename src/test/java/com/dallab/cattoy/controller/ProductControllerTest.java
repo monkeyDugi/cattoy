@@ -2,6 +2,7 @@ package com.dallab.cattoy.controller;
 
 import com.dallab.cattoy.application.ProdcutService;
 import com.dallab.cattoy.domain.Product;
+import com.dallab.cattoy.dto.ProductDto;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -70,6 +71,25 @@ public class ProductControllerTest {
                 .andExpect(header().string("location", "/products/13"));
 
         verify(productService).addProduct(any(Product.class));
+    }
+
+    @Test
+    public void update() throws Exception {
+        mockMvc.perform(
+                patch("/products/13")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content("{\"name\":\"낚시대\", \"maker\":\"달랩\",\"price\":5000}")
+
+        )
+                .andExpect(status().isOk());
+
+        ProductDto productDto = ProductDto.builder()
+                .name("낚시대")
+                .maker("달랩")
+                .price(5000)
+                .build();
+
+        verify(productService).updateProduct(13L, productDto);
     }
 
     @Test
